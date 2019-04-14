@@ -1,9 +1,14 @@
 module.exports = {
-    query1: (req, res) => {
-        db.query("SELECT item_desc , store_name , SUM(bottle_sold) AS 'Total Bottles Sold' FROM iowa_liquor_sales WHERE store_name = 'Central City 2' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT 10", function (err, results) {
+
+    //Lists out the top x alcohols by the number of bottles sold
+    top10Alcohol: (req, res, x) => {
+        let theQuery = 'SELECT item_desc FROM iowa_liquor_sales GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT ' + x;
+        db.query(theQuery , function (err, results) {
             if (err)
                 throw err;
             res.send(JSON.stringify(results));
         });
     }
+    
+    
 }
