@@ -13,7 +13,6 @@ var db = mysql.createConnection({
 global.db = db;
 
 app.get('/', function (req, res) {
-    res.send('Hello World');
     test.query1(req, res);
 });
 
