@@ -19,6 +19,17 @@ module.exports = {
             res.send(JSON.stringify(results));
         });
     },
+
+    //all beverages that start with the input character                 (DOESN'T WORK CURRENTLY)
+    beverageStartingWith: (req, res, startChar) => {
+        let theQuery = 'SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE LEFT(item_desc , 1) = ' + startChar + ' ORDER BY item_desc;';
+        //let theQuery = 'SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE LEFT(item_desc , 1) = ${startChar} ORDER BY item_desc;';
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
     
 }
