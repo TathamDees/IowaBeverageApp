@@ -52,7 +52,7 @@ module.exports = {
     //beverages sold by x store
     soldByStore: (req, res, theStore) => {
         let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' ORDER BY item_desc";
-        
+
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -163,6 +163,26 @@ module.exports = {
     //Displays the liqour stores in ___ city
     liqourStoresInCity: (req, res, theCity) => {
         let query = "SELECT DISTINCT store_name , city FROM iowa_liquor_sales WHERE city = '" + theCity + "' ORDER BY store_name;";
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    // Randomly selects x beverages
+    randomBeverageSelector: (req, res, x) => {
+        let query = "SELECT DISTINCT item_desc FROM items ORDER BY RAND() LIMIT " + x;
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    // Randomly generate a cocktail with maximum p Parts for a Alcohols
+    cocktailGenerator: (req, res, p, a) => {
+        let query = "SELECT DISTINCT item_desc AS 'alcohol' , ROUND(RAND() * " + (p - 1) + " + 1) AS 'parts' FROM items ORDER BY RAND() LIMIT " + a;
         db.query(query , function (err, results) {
             if (err)
                 throw err;
