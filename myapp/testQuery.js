@@ -21,6 +21,7 @@ module.exports = {
         db.query(topFive, function(err, results) {
             if (err)
                 throw err;
+            console.log(results);
             res.send(JSON.stringify(results));
         });
     },
