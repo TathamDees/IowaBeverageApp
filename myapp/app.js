@@ -15,65 +15,22 @@ global.db = db;
 app.use(express.static('C:/Users/vedan/iowaAlc/myapp/frontEnd'));
 
 app.get('/', function (req, res) {
-  //test.mostPopularStoresByYear(req, res, 2018, 5);
-  //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
-  //test.topxAlcohol(req, res, 3);
-  //test.uniqueBeverageCount(req, res);
-  //test.beverageStartingWith(req, res, 'a');
-  ///test.topxAlcohol(req, res, 3);
-  ///test.uniqueBeverageCount(req, res);
-  ///test.beverageStartingWith(req, res, 'a');
-  //test.soldByStore(req , res, 'Central City 2');
-  //test.topAlcoholByCity(req , res , 'DES MOINES', 10);
-  test.storesThatSell(req, res, 'Godiva Liqueur');
-  //test.popularByStore(req , res , 'Central City 2', 5);
-  //test.mostPopularStores(req , res , 5);
-  //test.storeByRevenue(req , res , 5);
-  //test.efficientDrinks(req , res , 10);
-  //test.expensiveDrinks(req , res , 10);
-  //test.liqourStoresInCity(req , res , 'DES MOINES');
-  //test.randomBeverageSelector(req , res , 3);
-  //test.cocktailGenerator(req , res , 3 , 4);
-});
-
-
-app.get('/', function (req, res) {
   console.log("test");
-  res.sendFile('C:/Users/vedan/iowaAlc/myapp/frontEnd/index.html');
+    res.sendFile('C:/Users/vedan/iowaAlc/myapp/frontEnd.index.html');
 });
 
-app.get("/foo", function (req, res) {
-  console.log("ksjdgkjnfdskjgd");
-  //test.mostPopularStoresByYear(req, res, 2018, 5);
-  //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
-  //test.topxAlcohol(req, res, 3);
-  //test.uniqueBeverageCount(req, res);
-  //test.beverageStartingWith(req, res, 'a');
-  test.topxAlcohol(req, res, 3);
-  ///test.uniqueBeverageCount(req, res);
-  ///test.beverageStartingWith(req, res, 'a');
-  //test.soldByStore(req , res, 'Central City 2');
-  //test.topAlcoholByCity(req , res , 'DES MOINES', 10);
-  //test.storesThatSell(req , res, 'Godiva Liqueur');
-  //test.popularByStore(req , res , 'Central City 2', 5);
-  //test.mostPopularStores(req , res , 5);
-  //test.storeByRevenue(req , res , 5);
-  //test.efficientDrinks(req , res , 10);
-  //test.expensiveDrinks(req , res , 10);
-  //test.liqourStoresInCity(req , res , 'DES MOINES');
-  //test.randomBeverageSelector(req , res , 3);
-  //test.cocktailGenerator(req, res, 3, 4);
-});
 app.get("/cocktail", function (req, res) {
   test.cocktailGenerator(req, res, 3, 4);
 });
 
 app.get("/topAlcohol", function (req, res) {
-  test.topxAlcohol(req, res, 3);
+  test.topxAlcohol(req, res, req.query.param);
+});
+app.get("/bevByLetter", function (req, res) {
+    test.beverageStartingWith(req, res, req.query.dataBox);
 });
 
 app.get("/soldByStore", function (req, res) {
-    //console.log("WORKING");
     test.soldByStore(req, res, req.query.storeName);
 });
 
