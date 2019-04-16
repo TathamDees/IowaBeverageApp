@@ -15,12 +15,12 @@ global.db = db;
 
 
 
-app.use(express.static('C:/Users/Martin Wang/iowaAlc/myapp/frontEnd'));
+app.use(express.static('C:/Users/Tatham/Vandy/Databases/Project2/Project2Code/iowaAlc/myapp/frontEnd'));
 
 app.get('/', function (req, res) {
   //test.mostPopularStoresByYear(req, res, 2018, 5);
   //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
-  //test.topxAlcohol(req, res, 3);
+  test.topxAlcohol(req, res, 3);
   //test.uniqueBeverageCount(req, res);
   //test.beverageStartingWith(req, res, 'a');
   ///test.topxAlcohol(req, res, 3);
@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
   ///test.beverageStartingWith(req, res, 'a');
   //test.soldByStore(req , res, 'Central City 2');
   //test.topAlcoholByCity(req , res , 'DES MOINES', 10);
-  test.storesThatSell(req, res, 'Godiva Liqueur');
+  //test.storesThatSell(req, res, 'Godiva Liqueur');
   //test.popularByStore(req , res , 'Central City 2', 5);
   //test.mostPopularStores(req , res , 5);
   //test.storeByRevenue(req , res , 5);
@@ -75,6 +75,11 @@ app.get("/cocktail", function (req, res) {
 });
 app.get("/topAlcohol", function (req, res) {
   test.topxAlcohol(req, res, 3);
+});
+app.get("/bevByLetter", function (req, res) {
+    //var ddChar = 'a';
+    test.beverageStartingWith(req, res, req.query.dataBox);
+    //test.beverageStartingWith(req, res, 'a');
 });
 
 app.listen(8080, function () {

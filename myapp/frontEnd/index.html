@@ -113,7 +113,7 @@
                 <option>Z</option>
               </select>
             </div>
-            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+            <button class="btn btn-info btn-large" id="testButton" onclick="bevByLetterFunction()" type="submit">
               Beverages by Letter
             </button>
           </div>
@@ -166,6 +166,34 @@
         console.log(xhr);
         console.log(textStatus);
         console.log(error);
+      }
+    });
+  }
+</script>
+
+<script>
+  function bevByLetterFunction() {
+    $.ajax({
+      url: "/bevByLetter",
+      dataType: "json",
+      data: {
+        dataBox: $('#selection').val()
+      },
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      success: function (data) {
+        let x = 0;
+        for (y in data) {
+          var output = JSON.stringify(data[x]);
+          var append = JSON.parse(output);
+          document.getElementById("outputBox").innerHTML += append.item_desc + "\n";
+          x++;
+        }
+      },
+      error: function (data, xhr, textStatus, error) {
+        document.getElementById("outputBox").innerHTML =
+          "failure" + data.responseText;
+        console.log("Failure!");
       }
     });
   }
