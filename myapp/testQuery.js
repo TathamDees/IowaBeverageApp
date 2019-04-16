@@ -61,5 +61,46 @@ module.exports = {
             res.send(JSON.stringify(results));
         });
     },
+
+    //Displays the top x most ordered beverages by ___ store
+    popularByStore: (req, res, x) => {
+        let theQuery = "SELECT item_desc , store_name , SUM(bottle_sold) AS 'Total Bottles Sold' FROM iowa_liquor_sales WHERE store_name = 'Central City 2' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the top x stores that sold the most bottles
+    mostPopularStores: (req, res, x) => {
+        let theQuery = "SELECT store_name , SUM(bottle_sold) FROM iowa_liquor_sales GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the top x stores with the highest revenue
+    storeByRevenue: (req, res, x) => {
+        let theQuery = "SELECT store_name , SUM(sale) FROM iowa_liquor_sales GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
+    /*
+    //
+    method: (req, res) => {
+        let theQuery = "";
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+    */
 }

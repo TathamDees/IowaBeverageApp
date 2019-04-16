@@ -18,7 +18,10 @@ app.get('/', function (req, res) {
     //test.beverageStartingWith(req, res, 'a');
     //test.soldByStore(req , res);
     //test.topAlcoholByCity(req , res , 10);
-    test.storesThatSell(req , res);
+    //test.storesThatSell(req , res);
+    //test.popularByStore(req , res , 5);
+    //test.mostPopularStores(req , res , 5);
+    //test.storeByRevenue(req , res , 5);
 });
 
 app.listen(3000, function () {
