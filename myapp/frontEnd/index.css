@@ -1,0 +1,38 @@
+body,
+html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("images/background.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#navigation {
+  align-content: center;
+  background-color: #86592d;
+}
+#title {
+  color: white;
+  align-self: center;
+  padding-left: 1rem;
+}
+#howTo {
+  padding-top: 1rem;
+}
+
+#outputBoxContainer {
+  padding-left: 2rem;
+}
+
+#testButton {
+  align-items: flex-end;
+}

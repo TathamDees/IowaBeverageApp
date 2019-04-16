@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="shortcut icon" href="" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+  <title>Iowaaaa</title>
+</head>
+
+<body>
+  <div class="bg">
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" id="navigation">
+      <a class="navbar-brand" href="#" style="padding-left: 1rem">
+        <div class="row" id="nav">
+          <img src="images/beer.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+          <h4 id="title">Iowa Alcohol Sales</h4>
+        </div>
+      </a>
+    </nav>
+
+    <!-- Button trigger modal -->
+    <div class="container-fluid row justify-content-end" id="howTo">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+        How do I use this app?
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                How do I use this site?
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6" id="outputBoxContainer">
+          <textarea class="form-control" rows="5" id="outputBox"></textarea>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="container-fluid row justify-content-end"
+            style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
+            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+              Cocktail Generator
+            </button>
+          </div>
+          <div class="container-fluid row justify-content-end"
+            style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
+            <div class="form-group" style="margin-top: auto; margin-bottom: auto">
+              <input type="text" class="form-control" id="usr" />
+            </div>
+            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+              Top Beverages by Sales
+            </button>
+          </div>
+          <div class="container-fluid row justify-content-end"
+            style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
+            <div class="form-group" style="margin-top: auto; margin-bottom: auto" data-flip="false">
+              <select class="form-control" id="selection">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+                <option>H</option>
+                <option>I</option>
+                <option>J</option>
+                <option>J</option>
+                <option>K</option>
+                <option>L</option>
+                <option>M</option>
+                <option>N</option>
+                <option>O</option>
+                <option>P</option>
+                <option>Q</option>
+                <option>R</option>
+                <option>S</option>
+                <option>T</option>
+                <option>U</option>
+                <option>V</option>
+                <option>W</option>
+                <option>X</option>
+                <option>Y</option>
+                <option>Z</option>
+              </select>
+            </div>
+            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+              Beverages by Letter
+            </button>
+          </div>
+          <div class="container-fluid row justify-content-end"
+            style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
+            <div class="form-group" style="margin-top: auto; margin-bottom: auto">
+              <input type="text" class="form-control" id="usr" />
+            </div>
+            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+              Inventory by Store
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- Optional JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  function testFunction() {
+    $.ajax({
+      url: "/foo",
+      dataType: "json",
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      success: function (data) {
+        console.log("success");
+        document.getElementById("outputBox").innerHTML = data.responseText;
+      },
+      error: function (data, xhr, textStatus, error) {
+        document.getElementById("outputBox").innerHTML =
+          "failure" + data.responseText;
+        console.log(data);
+        console.log("Failure!");
+        console.log(xhr);
+        console.log(textStatus);
+        console.log(error);
+      }
+    });
+  }
+</script>
+
+</html>
