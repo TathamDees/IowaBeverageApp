@@ -80,10 +80,40 @@ module.exports = {
         });
     },
 
+    //Displays the top x stores that sold the most bottles in a particular year
+    mostPopularStoresByYear: (req, res, year, x) => {
+        let query = "SELECT store_name , SUM(bottle_sold) FROM iowa_liquor_sales WHERE invoice_date LIKE '%" + year + "' GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
+        db.query(query, function(err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
     //Displays the top x stores with the highest revenue
     storeByRevenue: (req, res, x) => {
         let query = "SELECT store_name , SUM(sale) FROM iowa_liquor_sales GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
         db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the top x stores with the highest revenue in particular city
+    storeByRevenueByCity: (req, res, city, x) => {
+        let query = "SELECT store_name , SUM(sale) FROM iowa_liquor_sales WHERE city = '" + city + "' GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
+        db.query(query, function(err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the top x stores with the highest revenue
+    storeByRevenue: (req, res, x) => {
+        let query = "SELECT store_name , SUM(sale) FROM iowa_liquor_sales GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
+        db.query(query, function(err, results) {
             if (err)
                 throw err;
             res.send(JSON.stringify(results));
