@@ -2,7 +2,6 @@ var express = require("express");
 var app = express();
 var mysql = require("mysql");
 var test = require("./testQuery.js");
-//var front = require("/frontEnd");
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -13,9 +12,7 @@ var db = mysql.createConnection({
 
 global.db = db;
 
-
-
-app.use(express.static('C:/Users/Martin Wang/iowaAlc/myapp/frontEnd'));
+app.use(express.static('C:/Users/vedan/iowaAlc/myapp/frontEnd'));
 
 app.get('/', function (req, res) {
   //test.mostPopularStoresByYear(req, res, 2018, 5);
@@ -42,10 +39,7 @@ app.get('/', function (req, res) {
 
 app.get('/', function (req, res) {
   console.log("test");
-  res.sendFile('C:/Users/Martin Wang/iowaAlc/myapp/frontEnd/index.html');
-  // front.readFile(__dirname + '/index.html', function (err, data) {
-  //   console.log(data.toString());
-  // })
+  res.sendFile('C:/Users/vedan/iowaAlc/myapp/frontEnd/index.html');
 });
 
 app.get("/foo", function (req, res) {
@@ -73,8 +67,14 @@ app.get("/foo", function (req, res) {
 app.get("/cocktail", function (req, res) {
   test.cocktailGenerator(req, res, 3, 4);
 });
+
 app.get("/topAlcohol", function (req, res) {
   test.topxAlcohol(req, res, 3);
+});
+
+app.get("/soldByStore", function (req, res) {
+    //console.log("WORKING");
+    test.soldByStore(req, res, req.query.storeName);
 });
 
 app.listen(8080, function () {
