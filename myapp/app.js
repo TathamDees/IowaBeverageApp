@@ -13,9 +13,9 @@ var db = mysql.createConnection({
 global.db = db;
 
 app.get('/', function (req, res) {
-    test.topxAlcohol(req, res, 3);
+    //test.topxAlcohol(req, res, 3);
     //test.uniqueBeverageCount(req, res);
-    //test.beverageStartingWith(req, res, 'a');
+    test.beverageStartingWith(req, res, 'a');
 });
 
 app.listen(3000, function () {
