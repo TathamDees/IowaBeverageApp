@@ -50,10 +50,30 @@ module.exports = {
     },
     
     //beverages sold by x store
+<<<<<<< HEAD
     soldByStore: (req, res, theStore) => {
         let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' ORDER BY item_desc";
 
         db.query(query , function (err, results) {
+=======
+    soldByStore: (req, res, storeName) => {
+        let dropView = "DROP VIEW IF EXISTS beverageStoreView;";
+        let createView = "CREATE VIEW beverageStoreView AS SELECT distinct I.item_num FROM stores S INNER JOIN invoices I ON I.store_num = S.store_num WHERE store_name = '" + storeName + "';";
+        let beveragesSold = "SELECT distinct item_desc FROM beverageStoreView INNER JOIN items ON beverageStoreView.item_num = items.item_num ORDER BY item_desc;";
+
+        db.query(dropView, function(err, results) {
+            if (err)
+                throw err;
+        });
+
+
+        db.query(createView , function (err, results) {
+            if (err)
+                throw err;
+        });
+
+        db.query(beveragesSold, function(err, results) {
+>>>>>>> 4ef9a860dc46fe84b18fa5e9645e01a6e49851e2
             if (err)
                 throw err;
             res.send(JSON.stringify(results));

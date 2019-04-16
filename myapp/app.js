@@ -15,6 +15,9 @@ global.db = db;
 app.get('/', function(req, res) {
     //test.mostPopularStoresByYear(req, res, 2018, 5);
     //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
+    test.topxAlcohol(req, res, 3);
+    //test.uniqueBeverageCount(req, res);
+    //test.beverageStartingWith(req, res, 'a');
     ///test.topxAlcohol(req, res, 3);
     ///test.uniqueBeverageCount(req, res);
     ///test.beverageStartingWith(req, res, 'a');
@@ -30,6 +33,10 @@ app.get('/', function(req, res) {
     //test.randomBeverageSelector(req , res , 3);
     test.cocktailGenerator(req , res , 3 , 4);
 
+});
+
+app.get('/topAlcohol', function(req, res) {
+    test.topxAlcohol(req, res, 3);
 });
 
 app.listen(3000, function () {
