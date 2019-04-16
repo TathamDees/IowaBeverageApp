@@ -31,8 +31,8 @@ module.exports = {
     },
     
     //beverages sold by x store
-    soldByStore: (req, res) => {
-        let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = 'Central City 2' ORDER BY item_desc";
+    soldByStore: (req, res, theStore) => {
+        let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' ORDER BY item_desc";
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -41,8 +41,8 @@ module.exports = {
     },
 
     //top x alcohols by city
-    topAlcoholByCity: (req, res, x) => {
-        let query = "SELECT DISTINCT item_desc , city , SUM(bottle_sold) FROM iowa_liquor_sales WHERE city = 'DES MOINES' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+    topAlcoholByCity: (req, res, theCity, x) => {
+        let query = "SELECT DISTINCT item_desc , city , SUM(bottle_sold) FROM iowa_liquor_sales WHERE city = '" + theCity + "' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -51,8 +51,8 @@ module.exports = {
     },
 
     //displays a list of stores that sell x alcohol
-    storesThatSell: (req, res) => {
-        let query = "SELECT DISTINCT store_name FROM iowa_liquor_sales WHERE item_desc = 'Godiva Liqueur' ORDER BY store_name;";
+    storesThatSell: (req, res, theAlcohol) => {
+        let query = "SELECT DISTINCT store_name FROM iowa_liquor_sales WHERE item_desc = '" + theAlcohol + "' ORDER BY store_name;";
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -61,8 +61,8 @@ module.exports = {
     },
 
     //Displays the top x most ordered beverages by ___ store
-    popularByStore: (req, res, x) => {
-        let query = "SELECT item_desc , store_name , SUM(bottle_sold) AS 'Total Bottles Sold' FROM iowa_liquor_sales WHERE store_name = 'Central City 2' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+    popularByStore: (req, res, theStore, x) => {
+        let query = "SELECT item_desc , store_name , SUM(bottle_sold) AS 'Total Bottles Sold' FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
         db.query(query , function (err, results) {
             if (err)
                 throw err;
