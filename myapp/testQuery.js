@@ -2,8 +2,16 @@ module.exports = {
 
     //Lists out the top x alcohols by the number of bottles sold
     topxAlcohol: (req, res, x) => {
-        let query = "SELECT item_desc FROM iowa_liquor_sales GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
-        db.query(query , function (err, results) {
+        //let query = "SELECT item_desc FROM iowa_liquor_sales GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+        //let query = "SELECT items.item_desc FROM invoices INNER JOIN items ON invoices.item_num = items.item_num GROUP BY items.item_desc ORDER BY SUM(invoices.bottle_sold) DESC LIMIT " + x;
+        let createView = "CREATE VIEW myview AS SELECT item_num FROM invoices GROUP BY item_num ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+        let topFive = "SELECT distinct item_desc FROM items WHERE item_num IN (SELECT * FROM myview);";
+        db.query(createView, function (err, results) {
+            if (err)
+                throw err;
+        });
+
+        db.query(topFive, function(err, results) {
             if (err)
                 throw err;
             res.send(JSON.stringify(results));
