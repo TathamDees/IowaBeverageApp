@@ -24,6 +24,9 @@ app.get('/', function(req, res) {
     //test.popularByStore(req , res , 'Central City 2', 5);
     //test.mostPopularStores(req , res , 5);
     //test.storeByRevenue(req , res , 5);
+    //test.efficientDrinks(req , res , 10);
+    //test.expensiveDrinks(req , res , 10);
+    //test.liqourStoresInCity(req , res , 'DES MOINES');
 });
 
 app.listen(3000, function () {

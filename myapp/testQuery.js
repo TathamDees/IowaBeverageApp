@@ -110,6 +110,16 @@ module.exports = {
         });
     },
 
+    //Displays the top 10 most efficient alcohol purchases in price per volume
+    efficientDrinks: (req, res, x) => {
+        let query = "SELECT item_desc , bottle_volume , state_bottle_retail , bottle_volume / state_bottle_retail AS 'volume (mL) per dollar' FROM iowa_liquor_sales GROUP BY item_desc ORDER BY (bottle_volume / state_bottle_retail) DESC LIMIT " + x;
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
     //Displays the top x stores with the highest revenue
     storeByRevenue: (req, res, x) => {
         let query = "SELECT store_name , SUM(sale) FROM iowa_liquor_sales GROUP BY store_name ORDER BY Count(item_desc) DESC LIMIT " + x;
@@ -120,7 +130,25 @@ module.exports = {
         });
     },
 
-    
+    //Displays the top 10 most expensive alcohol purchases in dollars per volume (mL)
+    expensiveDrinks: (req, res, x) => {
+        let query = "SELECT item_desc , state_bottle_retail , bottle_volume , state_bottle_retail/ bottle_volume AS 'dollars per mL' FROM iowa_liquor_sales GROUP BY item_desc ORDER BY (bottle_volume / state_bottle_retail) LIMIT " + x;
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the liqour stores in ___ city
+    liqourStoresInCity: (req, res, theCity) => {
+        let query = "SELECT DISTINCT store_name , city FROM iowa_liquor_sales WHERE city = '" + theCity + "' ORDER BY store_name;";
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
     /*
     //
