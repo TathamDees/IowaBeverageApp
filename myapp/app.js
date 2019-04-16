@@ -14,6 +14,7 @@ var db = mysql.createConnection({
 global.db = db;
 
 
+
 app.use(express.static('C:/Users/Martin Wang/iowaAlc/myapp/frontEnd'));
 
 app.get('/', function (req, res) {
