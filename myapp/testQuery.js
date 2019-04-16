@@ -4,11 +4,11 @@ module.exports = {
     topxAlcohol: (req, res, x) => {
         //let query = "SELECT item_desc FROM iowa_liquor_sales GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
         //let query = "SELECT items.item_desc FROM invoices INNER JOIN items ON invoices.item_num = items.item_num GROUP BY items.item_desc ORDER BY SUM(invoices.bottle_sold) DESC LIMIT " + x;
-        let dropView = "DROP VIEW if exists topxAlcoholView";
-        let createView = "CREATE VIEW topxAlcoholView AS SELECT item_num FROM invoices GROUP BY item_num ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+        let dropView = "DROP VIEW IF EXISTS beverageStoreView;";
+        let createView = "CREATE VIEW myview AS SELECT item_num FROM invoices GROUP BY item_num ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
         let topFive = "SELECT distinct item_desc FROM items WHERE item_num IN (SELECT * FROM myview);";
-        
-        db.query(dropView, function (err, results) {
+
+        db.query(dropView, function(err, results) {
             if (err)
                 throw err;
         });
@@ -46,9 +46,23 @@ module.exports = {
     },
     
     //beverages sold by x store
-    soldByStore: (req, res, theStore) => {
-        let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' ORDER BY item_desc";
-        db.query(query , function (err, results) {
+    soldByStore: (req, res, storeName) => {
+        let dropView = "DROP VIEW IF EXISTS beverageStoreView;";
+        let createView = "CREATE VIEW beverageStoreView AS SELECT distinct I.item_num FROM stores S INNER JOIN invoices I ON I.store_num = S.store_num WHERE store_name = '" + storeName + "';";
+        let beveragesSold = "SELECT distinct item_desc FROM beverageStoreView INNER JOIN items ON beverageStoreView.item_num = items.item_num ORDER BY item_desc;";
+
+        db.query(dropView, function(err, results) {
+            if (err)
+                throw err;
+        });
+
+
+        db.query(createView , function (err, results) {
+            if (err)
+                throw err;
+        });
+
+        db.query(beveragesSold, function(err, results) {
             if (err)
                 throw err;
             res.send(JSON.stringify(results));
