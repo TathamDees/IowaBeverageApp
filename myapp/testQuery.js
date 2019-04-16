@@ -90,7 +90,25 @@ module.exports = {
         });
     },
 
-    
+    //Displays the top 10 most efficient alcohol purchases in price per volume
+    efficientDrinks: (req, res, x) => {
+        let query = "SELECT item_desc , bottle_volume , state_bottle_retail , bottle_volume / state_bottle_retail AS 'volume (mL) per dollar' FROM iowa_liquor_sales GROUP BY item_desc ORDER BY (bottle_volume / state_bottle_retail) DESC LIMIT " + x;
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //Displays the top 10 most expensive alcohol purchases in dollars per volume (mL)
+    expensiveDrinks: (req, res, x) => {
+        let query = "SELECT item_desc , state_bottle_retail , bottle_volume , state_bottle_retail/ bottle_volume AS 'dollars per mL' FROM iowa_liquor_sales GROUP BY item_desc ORDER BY (bottle_volume / state_bottle_retail) LIMIT " + x;
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
     /*
     //
