@@ -148,8 +148,14 @@
       type: "GET",
       contentType: "application/json; charset=utf-8",
       success: function (data) {
+        var output = JSON.parse(data);
+        //document.getElementById("outputBox").innerHTML = "woohoo";
+        // for (x in data) {
+        //   document.getElementById("outputBox").innerHTML += x;
+        // }
         console.log("success");
-        document.getElementById("outputBox").innerHTML = data.responseText;
+        console.log(data);
+        document.getElementById("outputBox").innerHTML = output;
       },
       error: function (data, xhr, textStatus, error) {
         document.getElementById("outputBox").innerHTML =
