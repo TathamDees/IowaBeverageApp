@@ -148,14 +148,15 @@
       type: "GET",
       contentType: "application/json; charset=utf-8",
       success: function (data) {
-        var output = JSON.parse(data);
-        //document.getElementById("outputBox").innerHTML = "woohoo";
-        // for (x in data) {
-        //   document.getElementById("outputBox").innerHTML += x;
-        // }
+        let x = 0;
+        for (y in data) {
+          var output = JSON.stringify(data[x]);
+          var append = JSON.parse(output);
+          document.getElementById("outputBox").innerHTML += append.item_desc + "\n";
+          x++;
+        }
         console.log("success");
         console.log(data);
-        document.getElementById("outputBox").innerHTML = output;
       },
       error: function (data, xhr, textStatus, error) {
         document.getElementById("outputBox").innerHTML =
