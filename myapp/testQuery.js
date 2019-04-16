@@ -109,6 +109,16 @@ module.exports = {
             res.send(JSON.stringify(results));
         });
     },
+
+    //Displays the liqour stores in ___ city
+    liqourStoresInCity: (req, res, theCity) => {
+        let query = "SELECT DISTINCT store_name , city FROM iowa_liquor_sales WHERE city = '" + theCity + "' ORDER BY store_name;";
+        db.query(query , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
     /*
     //
