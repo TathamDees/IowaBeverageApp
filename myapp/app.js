@@ -15,7 +15,7 @@ global.db = db;
 app.get('/', function(req, res) {
     //test.mostPopularStoresByYear(req, res, 2018, 5);
     //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
-    test.topxAlcohol(req, res, 3);
+    //test.topxAlcohol(req, res, 3);
     //test.uniqueBeverageCount(req, res);
     //test.beverageStartingWith(req, res, 'a');
     ///test.topxAlcohol(req, res, 3);
