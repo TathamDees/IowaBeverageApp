@@ -62,21 +62,21 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-sm-6" id="outputBoxContainer">
-          <textarea class="form-control" rows="5" id="outputBox"></textarea>
+          <textarea class="form-control" rows="10" id="outputBox"></textarea>
         </div>
         <div class="col-md-6 col-sm-6">
           <div class="container-fluid row justify-content-end"
             style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
-            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+            <button class="btn btn-info btn-large" id="testButton" onclick="cocktailGenerator()" type="submit">
               Cocktail Generator
             </button>
           </div>
           <div class="container-fluid row justify-content-end"
             style="padding: 0.5rem; vertical-align: middle; align-items: center; align-content: center">
             <div class="form-group" style="margin-top: auto; margin-bottom: auto">
-              <input type="text" class="form-control" id="usr" />
+              <input type="text" class="form-control" id="topAlcoholSalesCount" />
             </div>
-            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+            <button class="btn btn-info btn-large" id="topAlcoholsButton" onclick="topAlcohol()" type="submit">
               Top Beverages by Sales
             </button>
           </div>
@@ -113,7 +113,7 @@
                 <option>Z</option>
               </select>
             </div>
-            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+            <button class="btn btn-info btn-large" id="testButton" onclick="" type="submit">
               Beverages by Letter
             </button>
           </div>
@@ -122,7 +122,7 @@
             <div class="form-group" style="margin-top: auto; margin-bottom: auto">
               <input type="text" class="form-control" id="usr" />
             </div>
-            <button class="btn btn-info btn-large" id="testButton" onclick="testFunction()" type="submit">
+            <button class="btn btn-info btn-large" id="testButton" onclick="" type="submit">
               Inventory by Store
             </button>
           </div>
@@ -141,9 +141,41 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>
-  function testFunction() {
+  function topAlcohol() {
     $.ajax({
-      url: "/foo",
+      data: { param: document.getElementById("topAlcoholSalesCount").value },
+      url: "/topAlcohol",
+      dataType: "json",
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      success: function (data) {
+        let x = 0;
+        document.getElementById("outputBox").innerHTML = "";
+        for (y in data) {
+          var output = JSON.stringify(data[x]);
+          var append = JSON.parse(output);
+          document.getElementById("outputBox").innerHTML += append.item_desc + "\n";
+          x++;
+        }
+        console.log("success");
+        console.log(data);
+      },
+      error: function (data, xhr, textStatus, error) {
+        document.getElementById("outputBox").innerHTML =
+          "failure" + data.responseText;
+        console.log(data);
+        console.log("Failure!");
+        console.log(xhr);
+        console.log(textStatus);
+        console.log(error);
+      }
+    });
+  }
+</script>
+<script>
+  function cocktailGenerator() {
+    $.ajax({
+      url: "/cocktail",
       dataType: "json",
       type: "GET",
       contentType: "application/json; charset=utf-8",
@@ -155,8 +187,6 @@
           document.getElementById("outputBox").innerHTML += append.item_desc + "\n";
           x++;
         }
-        console.log("success");
-        console.log(data);
       },
       error: function (data, xhr, textStatus, error) {
         document.getElementById("outputBox").innerHTML =
