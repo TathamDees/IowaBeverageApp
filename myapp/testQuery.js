@@ -32,6 +32,34 @@ module.exports = {
         });
     },
     
-    
+    //beverages sold by x store
+    soldByStore: (req, res) => {
+        let theQuery = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = 'Central City 2' ORDER BY item_desc";
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //top x alcohols by city
+    topAlcoholByCity: (req, res, x) => {
+        let theQuery = "SELECT DISTINCT item_desc , city , SUM(bottle_sold) FROM iowa_liquor_sales WHERE city = 'DES MOINES' GROUP BY item_desc ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
+
+    //displays a list of stores that sell x alcohol
+    storesThatSell: (req, res) => {
+        let theQuery = "SELECT DISTINCT store_name FROM iowa_liquor_sales WHERE item_desc = 'Godiva Liqueur' ORDER BY store_name;";
+        db.query(theQuery , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+    },
     
 }

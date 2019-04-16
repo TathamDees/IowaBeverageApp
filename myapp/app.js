@@ -15,7 +15,10 @@ global.db = db;
 app.get('/', function (req, res) {
     //test.topxAlcohol(req, res, 3);
     //test.uniqueBeverageCount(req, res);
-    test.beverageStartingWith(req, res, 'a');
+    //test.beverageStartingWith(req, res, 'a');
+    //test.soldByStore(req , res);
+    //test.topAlcoholByCity(req , res , 10);
+    test.storesThatSell(req , res);
 });
 
 app.listen(3000, function () {
