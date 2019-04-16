@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
     ///test.beverageStartingWith(req, res, 'a');
     //test.soldByStore(req , res, 'Central City 2');
     //test.topAlcoholByCity(req , res , 'DES MOINES', 10);
-    //test.storesThatSell(req , res, 'Godiva Liqueur');
+    test.storesThatSell(req , res, 'Godiva Liqueur');
     //test.popularByStore(req , res , 'Central City 2', 5);
     //test.mostPopularStores(req , res , 5);
     //test.storeByRevenue(req , res , 5);
@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
     //test.expensiveDrinks(req , res , 10);
     //test.liqourStoresInCity(req , res , 'DES MOINES');
     //test.randomBeverageSelector(req , res , 3);
-    test.cocktailGenerator(req , res , 3 , 4);
+    //test.cocktailGenerator(req , res , 3 , 4);
 
 });
 

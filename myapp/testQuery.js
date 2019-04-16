@@ -85,8 +85,24 @@ module.exports = {
 
     //displays a list of stores that sell x alcohol
     storesThatSell: (req, res, theAlcohol) => {
-        let query = "SELECT DISTINCT store_name FROM iowa_liquor_sales WHERE item_desc = '" + theAlcohol + "' ORDER BY store_name;";
-        db.query(query , function (err, results) {
+        //let query = "SELECT DISTINCT store_name FROM iowa_liquor_sales WHERE item_desc = '" + theAlcohol + "' ORDER BY store_name;";
+        let dropView = "DROP VIEW IF EXISTS storesThatSellView;";
+        let createView = "CREATE VIEW storesThatSellView AS SELECT distinct S.store_num FROM invoices I INNER JOIN stores S ON S.item_num = I.item_num WHERE item_desc = '" + theAlcohol + "';";
+        let storesSelling = "SELECT distinct store_name FROM storesThatSellView INNER JOIN stores ON beverageStoreView.store_num = stores.store_num ORDER BY store_name;";
+        
+        db.query(dropView , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+
+        db.query(createView , function (err, results) {
+            if (err)
+                throw err;
+            res.send(JSON.stringify(results));
+        });
+
+        db.query(storesSelling , function (err, results) {
             if (err)
                 throw err;
             res.send(JSON.stringify(results));
