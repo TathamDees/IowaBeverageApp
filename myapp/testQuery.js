@@ -6,7 +6,7 @@ module.exports = {
         //let query = "SELECT items.item_desc FROM invoices INNER JOIN items ON invoices.item_num = items.item_num GROUP BY items.item_desc ORDER BY SUM(invoices.bottle_sold) DESC LIMIT " + x;
         let dropView = "DROP VIEW if exists topxAlcoholView";
         let createView = "CREATE VIEW topxAlcoholView AS SELECT item_num FROM invoices GROUP BY item_num ORDER BY SUM(bottle_sold) DESC LIMIT " + x;
-        let topFive = "SELECT distinct item_desc FROM items WHERE item_num IN (SELECT * FROM myview);";
+        let topFive = "SELECT distinct item_desc FROM items WHERE item_num IN (SELECT * FROM topxAlcoholView);";
         
         db.query(dropView, function (err, results) {
             if (err)
@@ -27,7 +27,9 @@ module.exports = {
     
     //number of unique beverages
     uniqueBeverageCount: (req, res) => {
-        let query = "SELECT count(DISTINCT item_desc) FROM iowa_liquor_sales; ";
+        //let query = "SELECT count(DISTINCT item_desc) FROM iowa_liquor_sales; ";
+        let query = "SELECT count(DISTINCT item_desc) FROM items;"
+        
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -37,7 +39,9 @@ module.exports = {
 
     //all beverages that start with the input character
     beverageStartingWith: (req, res, startChar) => {
-        let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE LEFT(item_desc , 1) = '" + startChar + "' ORDER BY item_desc;";
+        //let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE LEFT(item_desc , 1) = '" + startChar + "' ORDER BY item_desc;";
+        let query = "SELECT DISTINCT item_desc FROM items WHERE LEFT(item_desc , 1) = '" + startChar + "' ORDER BY item_desc;";
+        
         db.query(query , function (err, results) {
             if (err)
                 throw err;
@@ -48,6 +52,7 @@ module.exports = {
     //beverages sold by x store
     soldByStore: (req, res, theStore) => {
         let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE store_name = '" + theStore + "' ORDER BY item_desc";
+        
         db.query(query , function (err, results) {
             if (err)
                 throw err;

@@ -15,10 +15,10 @@ global.db = db;
 app.get('/', function(req, res) {
     //test.mostPopularStoresByYear(req, res, 2018, 5);
     //test.storeByRevenueByCity(req, res, 'Waterloo', 5);
-    test.topxAlcohol(req, res, 3);
-    //test.uniqueBeverageCount(req, res);
-    //test.beverageStartingWith(req, res, 'a');
-    //test.soldByStore(req , res, 'Central City 2');
+    ///test.topxAlcohol(req, res, 3);
+    ///test.uniqueBeverageCount(req, res);
+    ///test.beverageStartingWith(req, res, 'a');
+    test.soldByStore(req , res, 'Central City 2');
     //test.topAlcoholByCity(req , res , 'DES MOINES', 10);
     //test.storesThatSell(req , res, 'Godiva Liqueur');
     //test.popularByStore(req , res , 'Central City 2', 5);
