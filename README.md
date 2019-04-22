@@ -5,12 +5,12 @@ Our preprocessed data can be extracted from iowa_sales_data.zip (Compressed File
 
 To run the application:
 
-1. Run git clone https://github.com/TathamDees/iowaAlc.git
+1. Run `git clone https://github.com/TathamDees/iowaAlc.git`
 
 1. Install Node: https://nodejs.org/en/download/
 2. Install required Node modules with these commands:
-	npm install mysql
-	npm install express
+	`npm install mysql`
+	`npm install express`
 	
 3. Extra the .csv file from iowa_sales_data.zip and place it in the tmp folder inside your wamp/mamp folder (e.g. c:/wamp64/tmp/)
 
@@ -20,7 +20,7 @@ To run the application:
 
 6. Run revised_tables_iowa to create the tables in the updated database design and insert the appropriate data in each one
 
-7. Navigate to myapp/ directory and run node app.js
+7. Navigate to myapp/ directory and run `node app.js`
 
 8. Open http://localhost:8080/ in browser to view application
 
