@@ -1,3 +1,6 @@
+# This script fixes the data where there are spelling inconsistencies for the same product due to changes in how items were recorded over the years
+#For example, Bud Lite and Bud Lt would correspond to the same item, but were recorded under different names, messing up the creation of tables
+
 # item_num and item_desc  #########################################################################################
 
 DROP PROCEDURE IF EXISTS itemCleanup;
