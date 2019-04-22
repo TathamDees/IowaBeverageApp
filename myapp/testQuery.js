@@ -25,7 +25,6 @@ module.exports = {
 
     //number of unique beverages
     uniqueBeverageCount: (req, res) => {
-        //let query = "SELECT count(DISTINCT item_desc) FROM iowa_liquor_sales; ";
         let query = "SELECT count(DISTINCT item_desc) FROM items;"
 
         db.query(query, function (err, results) {
@@ -37,7 +36,6 @@ module.exports = {
 
     //all beverages that start with the input character
     beverageStartingWith: (req, res, startChar) => {
-        //let query = "SELECT DISTINCT item_desc FROM iowa_liquor_sales WHERE LEFT(item_desc , 1) = '" + startChar + "' ORDER BY item_desc;";
         let query = "SELECT DISTINCT item_desc FROM items WHERE LEFT(item_desc , 1) = '" + startChar + "' ORDER BY item_desc;";
 
         db.query(query, function (err, results) {
@@ -215,16 +213,4 @@ module.exports = {
             res.send(JSON.stringify(results));
         });
     },
-
-    /*
-    //
-    method: (req, res) => {
-        let query = "";
-        db.query(query , function (err, results) {
-            if (err)
-                throw err;
-            res.send(JSON.stringify(results));
-        });
-    },
-    */
 }

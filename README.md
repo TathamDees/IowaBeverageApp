@@ -9,8 +9,8 @@ To run the application:
 
 1. Install Node: https://nodejs.org/en/download/
 2. Install required Node modules with these commands:
-	`npm install mysql`
-	`npm install express`
+	-`npm install mysql`
+	-`npm install express`
 	
 3. Extra the .csv file from iowa_sales_data.zip and place it in the tmp folder inside your wamp/mamp folder (e.g. c:/wamp64/tmp/)
 
