@@ -1,11 +1,11 @@
-# iowaAlc
+# IowaBeverageApp
 
 Original Dataset can be downloaded [here](https://data.iowa.gov/Economy/Iowa-Liquor-Sales/m3tr-qhgy/data)
 Our preprocessed data can be extracted from iowa_sales_data.zip (Compressed File - 37.5 MB, Actual Size - 217.8 MB) in db
 
 To run the application:
 
-1. Run `git clone https://github.com/TathamDees/iowaAlc.git`
+1. Run `git clone https://github.com/TathamDees/IowaBeverageApp.git`
 
 1. Install Node: https://nodejs.org/en/download/
 2. Install required Node modules with these commands:
